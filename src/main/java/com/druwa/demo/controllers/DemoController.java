@@ -1,14 +1,20 @@
 package com.druwa.demo.controllers;
 
 import com.druwa.common.api.base.BaseResponseBody;
+import com.druwa.demo.Demo;
 import com.druwa.demo.repositories.DemoRepositorySupport;
+import com.druwa.demo.services.DemoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,10 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     private final DemoRepositorySupport demoRepositorySupport;
+    private final DemoService demoService;
 
     @Autowired
-    public DemoController(DemoRepositorySupport demoRepositorySupport) {
+    public DemoController(DemoRepositorySupport demoRepositorySupport, DemoService demoService) {
         this.demoRepositorySupport = demoRepositorySupport;
+        this.demoService = demoService;
     }
 
     @GetMapping("/healthcheck")
@@ -37,4 +45,23 @@ public class DemoController {
             demoRepositorySupport.getDemoes()
         );
     }
+
+    @PostMapping("/{name}")
+    @Operation(summary = "path에 이름 넣기", description = "DB의 id를 반환해준다.")
+    public long setDemo(@PathVariable("name") String name) {
+        return demoService.setDemo(name);
+    }
+
+    @GetMapping("/demolist")
+    @Operation(summary = "Demo list", description = "현재 demo db값을 모두 가지고 온다")
+    public List<Demo> getDemoList() {
+        return demoService.getDemoList();
+    }
+
+    @GetMapping("/demo")
+    @Operation(summary = "", description = "현재 demo db값을 모두 가지고 온다")
+    public Demo getDemoSingle(@RequestParam("name") String name) {
+        return demoService.getDemoByName(name);
+    }
+
 }
