@@ -23,7 +23,6 @@ spring:
     password: ${SPRING_DATASOURCE_BASE_PASSWORD:1q2w3e4r}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-
 logging:
   level:
     org:
