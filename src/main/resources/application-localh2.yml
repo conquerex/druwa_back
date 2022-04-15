@@ -1,0 +1,29 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        SQL: DEBUG
+        format_sql: true
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        show_sql: true
+  datasource:
+    url: ${SPRING_DATASOURCE_BASE_URL:jdbc:h2:mem:base;DB_CLOSE_DELAY=-1}
+    username: ${SPRING_DATASOURCE_BASE_USERNAME:base}
+    password: ${SPRING_DATASOURCE_BASE_PASSWORD:base}
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true

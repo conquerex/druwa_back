@@ -1,0 +1,17 @@
+spring:
+  datasource-labs:
+    database-driver-classname: org.h2.Driver
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    username: ${SPRING_DATASOURCE_1_LABS_USERNAME:base1}
+    password: ${SPRING_DATASOURCE_1_LABS_PASSWORD:base1}
+    url: ${SPRING_DATASOURCE_LABS_URL:jdbc:h2:mem:base1;DB_CLOSE_DELAY=-1}
+  datasource-logistics:
+    database-driver-classname: org.h2.Driver
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    username: ${SPRING_DATASOURCE_2_LOGISTICS_USERNAME:base2}
+    password: ${SPRING_DATASOURCE_2_LOGISTICS_PASSWORD:base2}
+    url: ${SPRING_DATASOURCE_LOGISTICS_URL:jdbc:h2:mem:base2;DB_CLOSE_DELAY=-1}
