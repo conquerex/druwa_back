@@ -1,11 +1,12 @@
 package com.druwa.config.all.json;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.druwa.config.all.json.serializer.LocalDateDeserializer;
 import com.druwa.config.all.json.serializer.LocalDateSerializer;
 import com.druwa.config.all.json.serializer.LocalDateTimeDeserializer;
 import com.druwa.config.all.json.serializer.LocalDateTimeSerializer;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,6 +25,7 @@ public class ObjectMapperConfig {
         javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer());
         javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
         javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
+        objectMapper.configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true);
         objectMapper.registerModule(javaTimeModule);
 
         return objectMapper;
