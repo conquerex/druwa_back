@@ -26,7 +26,8 @@ public class CafeMenuService {
                     cafeMenu.getParentId(),
                     cafeMenu.getMenuName(),
                     cafeMenu.getMenuCost(),
-                    cafeMenu.getMenuCostEmp()
+                    cafeMenu.getMenuCostEmp(),
+                    cafeMenu.getMenuIndex()
             );
             cafeMenuList.add(cafeMenuResponse);
         }

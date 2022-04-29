@@ -23,17 +23,20 @@ public class CafeMenu {
     private long id;
 
     @Column(name = "parent_id")
-    private long parentId;
+    private Long parentId;
 
     @Column(name = "menu_name")
     private String menuName;
 
     @Column(name = "menu_cost")
-    private String menuCost;
+    private Integer menuCost;
 
     @Column(name = "menu_cost_emp")
-    private String menuCostEmp;
+    private Integer menuCostEmp;
 
     @Column(name = "sale_yn")
     private String saleYn;
+
+    @Column(name = "menu_index")
+    private int menuIndex;
 }

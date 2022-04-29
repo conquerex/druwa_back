@@ -2,24 +2,26 @@ package com.druwa.menu.model;
 
 public class CafeMenuResponse {
     private long id;
-    private long parentId;
+    private Long parentId;
     private String menuName;
-    private String menuCost;
-    private String menuCostEmp;
+    private Integer menuCost;
+    private Integer menuCostEmp;
+    private int menuIndex;
 
-    public CafeMenuResponse(long id, long parentId, String menuName, String menuCost, String menuCostEmp) {
+    public CafeMenuResponse(long id, Long parentId, String menuName, Integer menuCost, Integer menuCostEmp, int menuIndex) {
         this.id = id;
         this.parentId = parentId;
         this.menuName = menuName;
         this.menuCost = menuCost;
         this.menuCostEmp = menuCostEmp;
+        this.menuIndex = menuIndex;
     }
 
     public long getId() {
         return id;
     }
 
-    public long getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
@@ -27,11 +29,15 @@ public class CafeMenuResponse {
         return menuName;
     }
 
-    public String getMenuCost() {
+    public Integer getMenuCost() {
         return menuCost;
     }
 
-    public String getMenuCostEmp() {
+    public Integer getMenuCostEmp() {
         return menuCostEmp;
+    }
+
+    public int getMenuIndex() {
+        return menuIndex;
     }
 }
