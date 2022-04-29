@@ -20,10 +20,10 @@ import lombok.NoArgsConstructor;
 public class CafeMenu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @Column(name = "menu_key_value")
-    private String menuKeyValue;
+    @Column(name = "parent_id")
+    private long parentId;
 
     @Column(name = "menu_name")
     private String menuName;

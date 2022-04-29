@@ -1,22 +1,17 @@
 package com.druwa.menu.model;
 
 public class CafeMenuResponse {
+    private long id;
+    private long parentId;
     private String menuName;
     private String menuCost;
+    private String menuCostEmp;
 
-    public String getMenuName() {
-        return menuName;
-    }
-
-    public void setMenuName(String menuName) {
+    public CafeMenuResponse(long id, long parentId, String menuName, String menuCost, String menuCostEmp) {
+        this.id = id;
+        this.parentId = parentId;
         this.menuName = menuName;
-    }
-
-    public String getMenuCost() {
-        return menuCost;
-    }
-
-    public void setMenuCost(String menuCost) {
         this.menuCost = menuCost;
+        this.menuCostEmp = menuCostEmp;
     }
 }

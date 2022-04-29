@@ -21,9 +21,13 @@ public class CafeMenuService {
         List<CafeMenu> originMenuList = cafeMenuRepository.findAllBySaleYn("Y");
         List<CafeMenuResponse> cafeMenuList = new ArrayList<>();
         for (CafeMenu cafeMenu : originMenuList) {
-            CafeMenuResponse cafeMenuResponse = new CafeMenuResponse();
-            cafeMenuResponse.setMenuName(cafeMenu.getMenuName());
-            cafeMenuResponse.setMenuCost(cafeMenu.getMenuCost());
+            CafeMenuResponse cafeMenuResponse = new CafeMenuResponse(
+                    cafeMenu.getId(),
+                    cafeMenu.getParentId(),
+                    cafeMenu.getMenuName(),
+                    cafeMenu.getMenuCost(),
+                    cafeMenu.getMenuCostEmp()
+            );
             cafeMenuList.add(cafeMenuResponse);
         }
         return cafeMenuList;
