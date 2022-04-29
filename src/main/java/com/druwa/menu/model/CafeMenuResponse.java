@@ -14,4 +14,24 @@ public class CafeMenuResponse {
         this.menuCost = menuCost;
         this.menuCostEmp = menuCostEmp;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getParentId() {
+        return parentId;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public String getMenuCost() {
+        return menuCost;
+    }
+
+    public String getMenuCostEmp() {
+        return menuCostEmp;
+    }
 }

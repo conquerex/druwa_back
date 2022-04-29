@@ -16,4 +16,10 @@ public class SimpleTest {
         );
         System.out.println(zonedDateTime.toLocalDateTime());
     }
+
+    @Test
+    public void test2() {
+        System.out.println(LocalDateTime.now());
+    }
+
 }

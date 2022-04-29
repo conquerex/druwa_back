@@ -4,20 +4,20 @@ import com.druwa.order.entity.CafeOrder;
 import com.druwa.order.entity.CafeOrderProduct;
 import com.druwa.order.model.CafeOrderProductModel;
 import com.druwa.order.model.CafeOrderRequest;
+import com.druwa.order.model.CafeOrderResponse;
 import com.druwa.order.model.OrderState;
 import com.druwa.order.repositories.CafeOrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CafeOrderService {
 
-    CafeOrderRepository cafeOrderRepository;
+    private CafeOrderRepository cafeOrderRepository;
 
     public CafeOrderService(CafeOrderRepository cafeOrderRepository) {
         this.cafeOrderRepository = cafeOrderRepository;
@@ -25,9 +25,7 @@ public class CafeOrderService {
 
     public void createOrder(CafeOrderRequest cafeOrderRequest) {
 
-        ZonedDateTime zonedDateTime = ZonedDateTime.of(
-                LocalDateTime.now(), ZoneId.of("Asia/Seoul")
-        );
+
         CafeOrder cafeOrder = new CafeOrder(
                 null,
                 cafeOrderRequest.getOrderName(),
@@ -54,4 +52,13 @@ public class CafeOrderService {
         cafeOrderRepository.save(cafeOrder);
     }
 
+    public List<CafeOrderResponse> getOrderList() {
+        List<CafeOrderResponse> cafeOrderResponseList = new ArrayList<>();
+        List<CafeOrder> orderList =
+                cafeOrderRepository.findAllByOrderDateBetween(LocalDate.now().atStartOfDay(), LocalDateTime.now());
+        for (CafeOrder cafeOrder : orderList) {
+            cafeOrderResponseList.add(new CafeOrderResponse(cafeOrder));
+        }
+        return cafeOrderResponseList;
+    }
 }
