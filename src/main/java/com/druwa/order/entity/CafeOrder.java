@@ -30,7 +30,6 @@ public class CafeOrder {
     @Column(name = "order_ho")
     private String orderHo;
 
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "order_date")
     @UpdateTimestamp
     private LocalDateTime orderDate;

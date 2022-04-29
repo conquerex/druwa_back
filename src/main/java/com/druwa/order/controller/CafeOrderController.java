@@ -3,6 +3,7 @@ package com.druwa.order.controller;
 import com.druwa.order.model.CafeOrderRequest;
 import com.druwa.order.model.CafeOrderResponse;
 import com.druwa.order.services.CafeOrderService;
+import com.druwa.user.services.CafeUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,15 +14,18 @@ import java.util.List;
 public class CafeOrderController {
 
     private final CafeOrderService cafeOrderService;
+    private final CafeUserService cafeUserService;
 
-    public CafeOrderController(CafeOrderService cafeOrderService) {
+    public CafeOrderController(CafeOrderService cafeOrderService, CafeUserService cafeUserService) {
         this.cafeOrderService = cafeOrderService;
+        this.cafeUserService = cafeUserService;
     }
 
     @PostMapping("/")
-    @Operation(summary = "주문", description = "주민의 카페 주문")
+    @Operation(summary = "주문", description = "유저의 카페 주문")
     public void createOrder(@RequestBody CafeOrderRequest cafeOrderRequest) {
         cafeOrderService.createOrder(cafeOrderRequest);
+        cafeUserService.clearCafeUser();
     }
 
     @GetMapping("/list")
