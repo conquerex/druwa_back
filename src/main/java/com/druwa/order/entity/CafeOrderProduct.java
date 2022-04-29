@@ -24,7 +24,7 @@ public class CafeOrderProduct {
     private CafeOrder cafeOrder;
 
     @Column(name = "order_menu_id")
-    private String orderMenuId;
+    private Long orderMenuId;
 
     @Column(name = "order_menu_name")
     private String orderMenuName;

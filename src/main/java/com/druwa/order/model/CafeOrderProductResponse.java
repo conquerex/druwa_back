@@ -4,7 +4,7 @@ import com.druwa.order.entity.CafeOrderProduct;
 
 public class CafeOrderProductResponse {
     private Long id;
-    private String orderMenuId;
+    private Long orderMenuId;
     private String orderMenuName;
     private int orderMenuCost;
     private int orderMenuCount;
@@ -21,7 +21,7 @@ public class CafeOrderProductResponse {
         return id;
     }
 
-    public String getOrderMenuId() {
+    public Long getOrderMenuId() {
         return orderMenuId;
     }
 
