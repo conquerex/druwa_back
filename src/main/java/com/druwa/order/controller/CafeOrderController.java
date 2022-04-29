@@ -30,10 +30,22 @@ public class CafeOrderController {
         return cafeOrderService.getOrderList();
     }
 
-//    @PatchMapping("/restore")
-//    @Operation(summary = "주문 복원", description = "완료 혹은 취소처리된 주문을 대기 처리")
-//    public void restoreOrder(@RequestBody CafeOrderRequest cafeOrderRequest) {
-//        cafeOrderService.restoreOrder(cafeOrderRequest);
-//    }
+    @PatchMapping("/restore/{orderId}")
+    @Operation(summary = "주문 복원", description = "완료 혹은 취소처리된 주문을 대기 처리")
+    public void restoreOrder(@PathVariable("orderId") long orderId) {
+        cafeOrderService.restoreOrder(orderId);
+    }
+
+    @PatchMapping("/cancel/{orderId}")
+    @Operation(summary = "주문 취소", description = "제품이나 서비스가 제공되기 전에 주문을 취소")
+    public void cancelOrder(@PathVariable("orderId") long orderId) {
+        cafeOrderService.cancelOrder(orderId);
+    }
+
+    @PatchMapping("/complete/{orderId}")
+    @Operation(summary = "주문 완료", description = "주문한 제품과 서비스를 제공하고 완료처리 함")
+    public void completeOrder(@PathVariable("orderId") long orderId) {
+        cafeOrderService.completeOrder(orderId);
+    }
 
 }

@@ -8,6 +8,7 @@ import com.druwa.order.model.CafeOrderResponse;
 import com.druwa.order.model.OrderState;
 import com.druwa.order.repositories.CafeOrderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -61,4 +62,23 @@ public class CafeOrderService {
         }
         return cafeOrderResponseList;
     }
+
+    @Transactional
+    public void restoreOrder(long orderId) {
+        CafeOrder cafeOrder = cafeOrderRepository.findById(orderId).get();
+        cafeOrder.setOrderState(OrderState.WAIT.toString());
+    }
+
+    @Transactional
+    public void cancelOrder(long orderId) {
+        CafeOrder cafeOrder = cafeOrderRepository.findById(orderId).get();
+        cafeOrder.setOrderState(OrderState.CANCEL.toString());
+    }
+
+    @Transactional
+    public void completeOrder(long orderId) {
+        CafeOrder cafeOrder = cafeOrderRepository.findById(orderId).get();
+        cafeOrder.setOrderState(OrderState.COMPLETE.toString());
+    }
+
 }
