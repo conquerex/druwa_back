@@ -29,4 +29,11 @@ public class CafeOrderController {
     public List<CafeOrderResponse> getOrderList() {
         return cafeOrderService.getOrderList();
     }
+
+//    @PatchMapping("/restore")
+//    @Operation(summary = "주문 복원", description = "완료 혹은 취소처리된 주문을 대기 처리")
+//    public void restoreOrder(@RequestBody CafeOrderRequest cafeOrderRequest) {
+//        cafeOrderService.restoreOrder(cafeOrderRequest);
+//    }
+
 }

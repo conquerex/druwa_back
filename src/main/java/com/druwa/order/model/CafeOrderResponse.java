@@ -6,6 +6,7 @@ import com.druwa.order.entity.CafeOrderProduct;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class CafeOrderResponse {
     private Long id;
@@ -14,6 +15,7 @@ public class CafeOrderResponse {
     private String orderHo;
     private LocalDateTime orderDate;
     private String orderState;
+    private String productListText;
     private List<CafeOrderProductResponse> cafeOrderProductList;
 
     public CafeOrderResponse(CafeOrder cafeOrder) {
@@ -24,12 +26,22 @@ public class CafeOrderResponse {
         this.orderDate = cafeOrder.getOrderDate();
         this.orderState = cafeOrder.getOrderState();
         this.cafeOrderProductList = getCafeOrderProductList(cafeOrder.getCafeOrderProductList());
+        this.productListText = getProductListText(cafeOrderProductList);
     }
 
     private List<CafeOrderProductResponse> getCafeOrderProductList(List<CafeOrderProduct> list) {
         List<CafeOrderProductResponse> responseList = new ArrayList<>();
         list.forEach(cafeOrderProduct -> responseList.add(new CafeOrderProductResponse(cafeOrderProduct)));
         return responseList;
+    }
+
+    private String getProductListText(List<CafeOrderProductResponse> cafeOrderProductList) {
+        StringJoiner stringJoiner = new StringJoiner(", ");
+        cafeOrderProductList.forEach(productResponse -> {
+            String item = productResponse.getOrderMenuName() + " " + productResponse.getOrderMenuCount() + "개";
+            stringJoiner.add(item);
+        });
+        return stringJoiner.toString();
     }
 
     public Long getId() {
@@ -58,5 +70,9 @@ public class CafeOrderResponse {
 
     public List<CafeOrderProductResponse> getCafeOrderProductList() {
         return cafeOrderProductList;
+    }
+
+    public String getProductListText() {
+        return productListText;
     }
 }
