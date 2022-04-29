@@ -30,10 +30,10 @@ public class CafeOrderProduct {
     private String orderMenuName;
 
     @Column(name = "order_menu_cost")
-    private String orderMenuCost;
+    private int orderMenuCost;
 
     @Column(name = "order_menu_count")
-    private String orderMenuCount;
+    private int orderMenuCount;
 
     @Override
     public String toString() {

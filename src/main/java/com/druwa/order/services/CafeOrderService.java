@@ -4,9 +4,13 @@ import com.druwa.order.entity.CafeOrder;
 import com.druwa.order.entity.CafeOrderProduct;
 import com.druwa.order.model.CafeOrderProductModel;
 import com.druwa.order.model.CafeOrderRequest;
+import com.druwa.order.model.OrderState;
 import com.druwa.order.repositories.CafeOrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,18 +24,30 @@ public class CafeOrderService {
     }
 
     public void createOrder(CafeOrderRequest cafeOrderRequest) {
-        CafeOrder cafeOrder = new CafeOrder();
-        cafeOrder.setOrderName(cafeOrderRequest.getOrderName());
-        cafeOrder.setOrderDong(cafeOrderRequest.getOrderDong());
-        cafeOrder.setOrderHo(cafeOrderRequest.getOrderHo());
+
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(
+                LocalDateTime.now(), ZoneId.of("Asia/Seoul")
+        );
+        CafeOrder cafeOrder = new CafeOrder(
+                null,
+                cafeOrderRequest.getOrderName(),
+                cafeOrderRequest.getOrderDong(),
+                cafeOrderRequest.getOrderHo(),
+                null,
+                OrderState.WAIT.toString(),
+                null
+        );
+
         List<CafeOrderProduct> cafeOrderProducts = new ArrayList<>();
-        for (CafeOrderProductModel product : cafeOrderRequest.getOrderProducts()) {
-            CafeOrderProduct cafeOrderProduct = new CafeOrderProduct();
-            cafeOrderProduct.setOrderMenuId(product.getOrderMenuId());
-            cafeOrderProduct.setCafeOrder(cafeOrder);
-            cafeOrderProduct.setOrderMenuName(product.getOrderMenuName());
-            cafeOrderProduct.setOrderMenuCost(product.getOrderMenuCost());
-            cafeOrderProduct.setOrderMenuCount(product.getOrderMenuCount());
+        for (CafeOrderProductModel model : cafeOrderRequest.getOrderProducts()) {
+            CafeOrderProduct cafeOrderProduct = new CafeOrderProduct(
+                    null,
+                    cafeOrder,
+                    model.getOrderMenuId(),
+                    model.getOrderMenuName(),
+                    model.getOrderMenuCost(),
+                    model.getOrderMenuCount()
+            );
             cafeOrderProducts.add(cafeOrderProduct);
         }
         cafeOrder.setCafeOrderProductList(cafeOrderProducts);

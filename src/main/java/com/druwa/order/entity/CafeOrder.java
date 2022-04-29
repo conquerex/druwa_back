@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -27,6 +29,14 @@ public class CafeOrder {
 
     @Column(name = "order_ho")
     private String orderHo;
+
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "order_date")
+    @UpdateTimestamp
+    private LocalDateTime orderDate;
+
+    @Column(name = "order_state")
+    private String orderState;
 
     @OneToMany(mappedBy = "cafeOrder", cascade = CascadeType.ALL)
     private List<CafeOrderProduct> cafeOrderProductList;

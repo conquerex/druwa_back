@@ -23,4 +23,10 @@ public class CafeOrderController {
     public void createOrder(@RequestBody CafeOrderRequest cafeOrderRequest) {
         cafeOrderService.createOrder(cafeOrderRequest);
     }
+
+//    @GetMapping("/list")
+//    @Operation(summary = "주문 내역", description = "카페 주문 목록")
+//    public List<CafeOrderResponse> getOrderList(@RequestParam String residentId) {
+//        return cafeOrderService.getOrderList(residentId);
+//    }
 }

@@ -8,6 +8,7 @@ class DruwaApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

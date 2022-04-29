@@ -3,8 +3,8 @@ package com.druwa.order.model;
 public class CafeOrderProductModel {
     private String orderMenuId;
     private String orderMenuName;
-    private String orderMenuCost;
-    private String orderMenuCount;
+    private int orderMenuCost;
+    private int orderMenuCount;
 
     public String getOrderMenuId() {
         return orderMenuId;
@@ -22,19 +22,19 @@ public class CafeOrderProductModel {
         this.orderMenuName = orderMenuName;
     }
 
-    public String getOrderMenuCost() {
+    public int getOrderMenuCost() {
         return orderMenuCost;
     }
 
-    public void setOrderMenuCost(String orderMenuCost) {
+    public void setOrderMenuCost(int orderMenuCost) {
         this.orderMenuCost = orderMenuCost;
     }
 
-    public String getOrderMenuCount() {
+    public int getOrderMenuCount() {
         return orderMenuCount;
     }
 
-    public void setOrderMenuCount(String orderMenuCount) {
+    public void setOrderMenuCount(int orderMenuCount) {
         this.orderMenuCount = orderMenuCount;
     }
 }
