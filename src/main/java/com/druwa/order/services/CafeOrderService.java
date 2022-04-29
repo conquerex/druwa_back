@@ -18,15 +18,13 @@ import java.util.List;
 @Service
 public class CafeOrderService {
 
-    private CafeOrderRepository cafeOrderRepository;
+    private final CafeOrderRepository cafeOrderRepository;
 
     public CafeOrderService(CafeOrderRepository cafeOrderRepository) {
         this.cafeOrderRepository = cafeOrderRepository;
     }
 
     public void createOrder(CafeOrderRequest cafeOrderRequest) {
-
-
         CafeOrder cafeOrder = new CafeOrder(
                 null,
                 cafeOrderRequest.getOrderName(),
