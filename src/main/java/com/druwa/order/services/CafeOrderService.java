@@ -62,19 +62,19 @@ public class CafeOrderService {
     }
 
     @Transactional
-    public void restoreOrder(long orderId) {
+    public void restoreOrderFromList(long orderId) {
         CafeOrder cafeOrder = cafeOrderRepository.findById(orderId).get();
         cafeOrder.setOrderState(OrderState.WAIT.toString());
     }
 
     @Transactional
-    public void cancelOrder(long orderId) {
+    public void cancelOrderFromList(long orderId) {
         CafeOrder cafeOrder = cafeOrderRepository.findById(orderId).get();
         cafeOrder.setOrderState(OrderState.CANCEL.toString());
     }
 
     @Transactional
-    public void completeOrder(long orderId) {
+    public void completeOrderFromList(long orderId) {
         CafeOrder cafeOrder = cafeOrderRepository.findById(orderId).get();
         cafeOrder.setOrderState(OrderState.COMPLETE.toString());
     }

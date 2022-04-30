@@ -28,6 +28,13 @@ public class CafeOrderController {
         cafeUserService.clearCafeUser();
     }
 
+    @PostMapping("/cancel")
+    @Operation(summary = "주문 중 취소", description = "주문을 중간에 취소하고 싶을 때 사용")
+    public void cancelOrder() {
+        // User만 리셋하면 됨
+        cafeUserService.clearCafeUser();
+    }
+
     @GetMapping("/list")
     @Operation(summary = "주문 내역", description = "카페 주문 목록")
     public List<CafeOrderResponse> getOrderList() {
@@ -36,20 +43,20 @@ public class CafeOrderController {
 
     @PatchMapping("/restore/{orderId}")
     @Operation(summary = "주문 복원", description = "완료 혹은 취소처리된 주문을 대기 처리")
-    public void restoreOrder(@PathVariable("orderId") long orderId) {
-        cafeOrderService.restoreOrder(orderId);
+    public void restoreOrderFromList(@PathVariable("orderId") long orderId) {
+        cafeOrderService.restoreOrderFromList(orderId);
     }
 
     @PatchMapping("/cancel/{orderId}")
-    @Operation(summary = "주문 취소", description = "제품이나 서비스가 제공되기 전에 주문을 취소")
-    public void cancelOrder(@PathVariable("orderId") long orderId) {
-        cafeOrderService.cancelOrder(orderId);
+    @Operation(summary = "들어온 주문 취소", description = "제품이나 서비스가 제공되기 전에 주문을 취소")
+    public void cancelOrderFromList(@PathVariable("orderId") long orderId) {
+        cafeOrderService.cancelOrderFromList(orderId);
     }
 
     @PatchMapping("/complete/{orderId}")
-    @Operation(summary = "주문 완료", description = "주문한 제품과 서비스를 제공하고 완료처리 함")
-    public void completeOrder(@PathVariable("orderId") long orderId) {
-        cafeOrderService.completeOrder(orderId);
+    @Operation(summary = "들어온 주문 완료", description = "주문한 제품과 서비스를 제공하고 완료처리 함")
+    public void completeOrderFromList(@PathVariable("orderId") long orderId) {
+        cafeOrderService.completeOrderFromList(orderId);
     }
 
 }
