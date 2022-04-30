@@ -17,6 +17,9 @@ public class CafeUserResponse {
     private String insertRegTime;
 
     public CafeUserResponse(CafeUser cafeUser) {
+
+        if(cafeUser == null) return;
+
         this.userDongHo = cafeUser.getUserDongHo();
         this.userName = cafeUser.getUserName();
         this.gateId = cafeUser.getGateId();
