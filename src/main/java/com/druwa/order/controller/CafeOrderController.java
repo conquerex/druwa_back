@@ -1,5 +1,6 @@
 package com.druwa.order.controller;
 
+import com.druwa.event.services.EventService;
 import com.druwa.order.model.CafeOrderRequest;
 import com.druwa.order.model.CafeOrderResponse;
 import com.druwa.order.services.CafeOrderService;
@@ -15,10 +16,12 @@ public class CafeOrderController {
 
     private final CafeOrderService cafeOrderService;
     private final CafeUserService cafeUserService;
+    private final EventService eventService;
 
-    public CafeOrderController(CafeOrderService cafeOrderService, CafeUserService cafeUserService) {
+    public CafeOrderController(CafeOrderService cafeOrderService, CafeUserService cafeUserService, EventService eventService) {
         this.cafeOrderService = cafeOrderService;
         this.cafeUserService = cafeUserService;
+        this.eventService = eventService;
     }
 
     @PostMapping("/")
@@ -26,6 +29,8 @@ public class CafeOrderController {
     public void createOrder(@RequestBody CafeOrderRequest cafeOrderRequest) {
         cafeOrderService.createOrder(cafeOrderRequest);
         cafeUserService.clearCafeUser();
+
+        eventService.sendToClient("NEW_ORDER");
     }
 
     @PostMapping("/cancel")
